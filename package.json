@@ -5,7 +5,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "eslint": "eslint ./src/",
+    "eslint": "eslint --fix ./src/",
     "eslint-fix": "eslint --fix ./src/"
   },
   "dependencies": {

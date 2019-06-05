@@ -1,2 +1,4 @@
-import { combineReducers } from "redux";
-export const reducer = combineReducers({});
+import {combineReducers} from "redux";
+import {home} from "./reducers/home";
+
+export const reducer = combineReducers({home});

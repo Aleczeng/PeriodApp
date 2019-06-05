@@ -219,7 +219,7 @@
     //禁止出现空函数
     "no-empty-pattern": 2,
     //禁止使用空解构模式
-//    "no-eq-null": 2,
+    //    "no-eq-null": 2,
     //禁止在没有类型检查操作符的情况下与null进行比较
     "no-eval": 2,
     //禁用eval()
