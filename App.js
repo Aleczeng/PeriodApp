@@ -41,6 +41,8 @@ export default class App extends Component<Props> {
       // 'SCRATCHMYBACK': require('./assets/fonts/SCRATCHMYBACK.TTF'),
       'PacificoRegular': require('./assets/fonts/Pacifico-Regular.ttf'),
       'PattayaRegular': require('./assets/fonts/Pattaya-Regular.ttf'),
+      'LobsterRegular':require('./assets/fonts/Lobster-Regular.ttf'),
+      'LuckiestGuyRegular':require('./assets/fonts/LuckiestGuy-Regular.ttf'),
     });
     this.setState({fontLoaded: true});
   }

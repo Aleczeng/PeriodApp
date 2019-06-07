@@ -1,7 +1,7 @@
 import * as types from '../actionTypes';
 
 const defaultState = {
-    isFirstTimeLogin: false,
+    isFirstTimeLogin: true,
 };
 export const global = (state = defaultState, action) => {
     switch (action.type) {

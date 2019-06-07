@@ -19,9 +19,11 @@ class _Root extends Component {
     };
 
     render() {
+        console.warn();
         return (
             <Fragment>
-                {this.props.isFirstTimeLogin ? <InitialLoginPage/> : <MainBottomTabNavigator/>}
+                {this.props.isFirstTimeLogin ? <InitialLoginPage fontLoaded={this.props.fontLoaded}/> :
+                    <MainBottomTabNavigator/>}
                 {
                     <MyLoading
                         ref={ref => {
@@ -37,4 +39,4 @@ class _Root extends Component {
 const mapStateToProps = (state) => ({
     isFirstTimeLogin: state.global.isFirstTimeLogin
 });
-export const Root = _Root;
+export const Root = connect(mapStateToProps, null)(_Root);
