@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from "react";
 import MyLoading from "./component/MyLoading";
 import {MainBottomTabNavigator} from './navigator/MainBottomTabNavigator';
+import {InitialLoginPage} from "./screen/InitialLoginPage";
+import {connect} from 'react-redux';
 
 class _Root extends Component {
     constructor(props) {
@@ -19,7 +21,7 @@ class _Root extends Component {
     render() {
         return (
             <Fragment>
-                <MainBottomTabNavigator/>
+                {this.props.isFirstTimeLogin ? <InitialLoginPage/> : <MainBottomTabNavigator/>}
                 {
                     <MyLoading
                         ref={ref => {
@@ -32,4 +34,7 @@ class _Root extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    isFirstTimeLogin: state.global.isFirstTimeLogin
+});
 export const Root = _Root;
