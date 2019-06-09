@@ -13,7 +13,7 @@ class Home extends Component {
 
     render() {
         return (
-            <LinearGradient colors={["#52EDC7", "#5AC8FB"]} style={styles.container}>
+            <LinearGradient colors={["#faa", "#c69"]} style={styles.container}>
                 <View style={styles.calendarWrapper}>
                     <Calendar style={styles.calendar}/>
                 </View>
