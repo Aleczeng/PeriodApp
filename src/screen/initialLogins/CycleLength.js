@@ -3,12 +3,12 @@ import {View, Text, StyleSheet, Button} from 'react-native';
 import {LinearGradient} from "expo";
 // import Calendar from 'react-native-calendar-select';
 import {connect} from "react-redux";
-import * as actions from '../store/actions';
-import {ReminderModal} from "../component/ReminderModal";
-import {formatYYYYMMDDFromDate} from "../utils/formatMonthandDay";
+import * as actions from '../../store/actions';
+import {ReminderModal} from "../../component/ReminderModal";
+import {formatYYYYMMDDFromDate} from "../../utils/formatMonthandDay";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
-class _LastPeriodDate extends Component {
+class _CycleLength extends Component {
 
     constructor(props) {
         super(props);
@@ -42,10 +42,10 @@ class _LastPeriodDate extends Component {
         return (
             <LinearGradient colors={["#EF4DB6", "#C643FC"]} style={styles.container}>
                 <Text style={styles.titleText}>
-                    Last Period Date
+                    Cycle Length
                 </Text>
                 <Text style={styles.contentText}>
-                    The START date of your last period
+                    The duration of two periods start date, usually 23-35 days
                 </Text>
                 <View>
                     <Button title="Show DatePicker" onPress={this.showDateTimePicker}/>
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
 const mapActionToState = (dispatch) => ({
     setIsFirstTimeLogin: (bool = false) => dispatch(actions.setIsFirstTimeLoginAction(bool)),
 });
-export const LastPeriodDate = connect(null, mapActionToState)(_LastPeriodDate);
+export const CycleLength = connect(null, mapActionToState)(_CycleLength);

@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import MyLoading from "./component/MyLoading";
 import {MainBottomTabNavigator} from './navigator/MainBottomTabNavigator';
-import {LastPeriodDate} from "./screen/LastPeriodDate";
+import {LastPeriodDate} from "./screen/initialLogins/LastPeriodDate";
 import {connect} from 'react-redux';
 import {InitialLoginStackNavigator} from "./navigator/InitialLoginStackNavigator";
 
