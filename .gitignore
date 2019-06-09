@@ -6,4 +6,4 @@ npm-debug.*
 *.key
 *.mobileprovision
 *_scsslint_tmp*.js
-.idea/workspace.xml
+*workspace.xml
