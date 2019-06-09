@@ -1,17 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {createBottomTabNavigator, createAppContainer} from "react-navigation";
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {TabBarIcon} from "../component/TabBarIcon";
 import TabBarComponent from "../component/TabBarComponent";
+import Home from "../screen/Home";
 
 
 const _MainBottomTabNavigator = createBottomTabNavigator({
         Home: {
-            screen: () => (<View>
-                <Text>
-                    abc
-                </Text>
-            </View>),
+            screen: () => <Home/>,
             navigationOptions: () => ({
                 tabBarIcon: props => <TabBarIcon name="ios-fitness" {...props} />,
                 tabBarLabel: "fitness",
