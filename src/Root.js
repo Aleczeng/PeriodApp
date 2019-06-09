@@ -1,8 +1,9 @@
 import React, {Component, Fragment} from "react";
 import MyLoading from "./component/MyLoading";
 import {MainBottomTabNavigator} from './navigator/MainBottomTabNavigator';
-import {InitialLoginPage} from "./screen/InitialLoginPage";
+import {LastPeriodDate} from "./screen/LastPeriodDate";
 import {connect} from 'react-redux';
+import {InitialLoginStackNavigator} from "./navigator/InitialLoginStackNavigator";
 
 class _Root extends Component {
     constructor(props) {
@@ -12,17 +13,12 @@ class _Root extends Component {
         };
     }
 
-    changeShowWelcome = bool => {
-        this.setState({
-            showWelcome: bool,
-        });
-    };
-
     render() {
-        console.warn();
+        console.warn("isFirstTimeLogin", this.props.isFirstTimeLogin);
+
         return (
             <Fragment>
-                {this.props.isFirstTimeLogin ? <InitialLoginPage fontLoaded={this.props.fontLoaded}/> :
+                {this.props.isFirstTimeLogin ? <InitialLoginStackNavigator fontLoaded={this.props.fontLoaded}/> :
                     <MainBottomTabNavigator/>}
                 {
                     <MyLoading
