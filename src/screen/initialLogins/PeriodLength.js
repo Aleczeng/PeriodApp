@@ -5,9 +5,10 @@ import {LinearGradient} from "expo";
 import {connect} from "react-redux";
 import * as actions from '../../store/actions';
 import {ReminderModal} from "../../component/ReminderModal";
+import {formatYYYYMMDDFromDate} from "../../utils/formatMonthandDay";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
-class _CycleLength extends Component {
+class _PeriodLength extends Component {
 
     constructor(props) {
         super(props);
@@ -26,7 +27,7 @@ class _CycleLength extends Component {
 
     handleDatePicked = date => {
         console.log("A date has been picked: ", date);
-        this.props.navigation.navigate("PeriodLength");
+        this.props.setIsFirstTimeLogin(false);
         this.hideDateTimePicker();
     };
 
@@ -85,4 +86,4 @@ const styles = StyleSheet.create({
 const mapActionToState = (dispatch) => ({
     setIsFirstTimeLogin: (bool = false) => dispatch(actions.setIsFirstTimeLoginAction(bool)),
 });
-export const CycleLength = connect(null, mapActionToState)(_CycleLength);
+export const PeriodLength = connect(null, mapActionToState)(_PeriodLength);
