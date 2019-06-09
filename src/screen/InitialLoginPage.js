@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {LinearGradient} from "expo";
 import Calendar from 'react-native-calendar-select';
+import {connect} from "react-redux";
+import * as actions from '../store/actions';
+import {setIsFirstTimeLogin} from "../store/actions";
+import {ReminderModal} from "../component/ReminderModal";
+import {formatYYYYMMDDFromDate} from "../utils/formatMonthandDay";
 
-export class InitialLoginPage extends Component {
+class _InitialLoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,16 +19,31 @@ export class InitialLoginPage extends Component {
         this.openCalendar = this.openCalendar.bind(this);
     }
 
+    componentDidMount() {
+        this.setState({showReminderModal: false});
+        // this.props.setIsFirstTimeLogin(true);
+    }
+
 // when confirm button is clicked, an object is conveyed to outer component
 // contains following property:
 // startDate [Date Object], endDate [Date Object]
 // startMoment [Moment Object], endMoment [Moment Object]
-    confirmDate({startDate, endDate, startMoment, endMoment}) {
-        this.setState({
+    confirmDate = async ({startDate, endDate, startMoment, endMoment}) => {
+        if (parseInt(formatYYYYMMDDFromDate(endDate), 10) - parseInt(formatYYYYMMDDFromDate(startDate), 10) > 15) {
+            await this.setState({
+                showReminderModal: true,
+                reminderTitle: "Invalid Period",
+                reminderContent: "Please choose valid period!"
+            })
+        }
+        await this.setState({
             startDate,
             endDate
         });
-    }
+        await this.props.setIsFirstTimeLogin(false);
+        console.warn('startDate', this.state.startDate);
+        console.warn('endDate', this.state.endDate);
+    };
 
     openCalendar() {
         this.calendar && this.calendar.open();
@@ -52,10 +72,10 @@ export class InitialLoginPage extends Component {
                     Last Period Date
                 </Text>}
                 <Text style={styles.contentText}>
-                    The start date of your last period
+                    The start and end date of your last period
                 </Text>
                 <View>
-                    <Button title="Open Calendar" onPress={this.openCalendar}/>
+                    <Button title="Select" onPress={this.openCalendar}/>
                     <Calendar
                         i18n="en"
                         ref={(calendar) => {
@@ -71,6 +91,13 @@ export class InitialLoginPage extends Component {
                         onConfirm={this.confirmDate}
                     />
                 </View>
+                <ReminderModal
+                    showReminderModal={this.state.showReminderModal}
+                    reminderTitle={this.state.reminderTitle}
+                    reminderContent={this.state.reminderContent}
+                    handleCloseReminder={this.props.setIsFirstTimeLogin(false)}
+                    hideConfirmButton={true}
+                />
             </LinearGradient>
         )
     }
@@ -92,3 +119,7 @@ const styles = StyleSheet.create({
         color: "#fff"
     }
 });
+const mapActionToState = (dispatch) => ({
+    setIsFirstTimeLogin: (bool) => dispatch(actions.setIsFirstTimeLoginAction(bool)),
+});
+export const InitialLoginPage = connect(null, mapActionToState)(_InitialLoginPage);
