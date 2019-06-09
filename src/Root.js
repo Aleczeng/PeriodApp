@@ -18,15 +18,18 @@ class _Root extends Component {
 
         return (
             <Fragment>
-                {this.props.isFirstTimeLogin ? <InitialLoginStackNavigator fontLoaded={this.props.fontLoaded}/> :
-                    <MainBottomTabNavigator/>}
+                {this.props.fontLoaded && (this.props.isFirstTimeLogin ?
+                    <InitialLoginStackNavigator fontLoaded={this.props.fontLoaded}/> :
+                    <MainBottomTabNavigator fontLoaded={this.props.fontLoaded}/>)}
                 {
                     <MyLoading
                         ref={ref => {
                             global.mLoadingComponentRef = ref;
                         }}
                     />
+
                 }
+
             </Fragment>
         );
     }

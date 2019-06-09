@@ -41,9 +41,9 @@ class _LastPeriodDate extends Component {
     render() {
         return (
             <LinearGradient colors={["#EF4DB6", "#C643FC"]} style={styles.container}>
-                {this.props.fontLoaded && <Text style={styles.titleText}>
+                <Text style={styles.titleText}>
                     Last Period Date
-                </Text>}
+                </Text>
                 <Text style={styles.contentText}>
                     The START date of your last period
                 </Text>
@@ -59,7 +59,7 @@ class _LastPeriodDate extends Component {
                     showReminderModal={this.state.showReminderModal}
                     reminderTitle={this.state.reminderTitle}
                     reminderContent={this.state.reminderContent}
-                    handleCloseReminder={this.props.setIsFirstTimeLogin(false)}
+                    handleCloseReminder={this.props.setIsFirstTimeLogin}
                     hideConfirmButton={true}
                 />
             </LinearGradient>
@@ -84,6 +84,6 @@ const styles = StyleSheet.create({
     }
 });
 const mapActionToState = (dispatch) => ({
-    setIsFirstTimeLogin: (bool) => dispatch(actions.setIsFirstTimeLoginAction(bool)),
+    setIsFirstTimeLogin: (bool = false) => dispatch(actions.setIsFirstTimeLoginAction(bool)),
 });
 export const LastPeriodDate = connect(null, mapActionToState)(_LastPeriodDate);
